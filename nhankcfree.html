@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPCUDUCFF - Nhận Kim Cương Free Fire Miễn Phí</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { 
+            background-color: #050814; 
+            color: #fff; 
+            background-image: radial-gradient(circle at 80% 20%, #0d1527 0%, #050814 80%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ICON 💎 PHÁT SÁNG */
+        .diamond-emoji-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 0 15px #00f0ff);
+        }
+
+        /* GIAO DIỆN ĐĂNG NHẬP */
+        .auth-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .auth-card {
+            background: #090e1a;
+            width: 100%;
+            max-width: 440px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid #14223c;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .auth-card h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00f0ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+        }
+        .auth-card .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0d1324;
+            border: 1px solid #1e293b;
+            color: white;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .input-group select option {
+            background: #090e1a;
+            color: white;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 2px solid #00f0ff;
+            color: #00f0ff;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+        .note-text {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin-top: 25px;
+            text-align: left;
+        }
+        .toggle-link {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .toggle-link span {
+            color: #00f0ff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* GIAO DIỆN CHÍNH */
+        .main-layout { display: flex; min-height: 100vh; }
+        .sidebar { width: 260px; background: #070c18; border-right: 1px solid #14223c; padding: 20px 0; display: flex; flex-direction: column; }
+        .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 0 20px 25px 20px; border-bottom: 1px solid #14223c; }
+        .sidebar-brand h1 { font-size: 20px; color: #00f0ff; font-weight: bold; }
+        .sidebar-menu { margin-top: 20px; list-style: none; }
+        .sidebar-item { padding: 14px 20px; display: flex; align-items: center; gap: 12px; color: #00f0ff; background: rgba(0, 240, 255, 0.05); border-left: 4px solid #00f0ff; cursor: pointer; font-weight: 500; font-size: 15px; }
+
+        .content-area { flex: 1; display: flex; flex-direction: column; }
+        .topbar { height: 70px; border-bottom: 1px solid #14223c; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; background: #060a15; }
+        .page-title { font-size: 18px; font-weight: 600; color: #cbd5e1; }
+        .user-info-box { display: flex; align-items: center; gap: 12px; }
+        .user-name-top { font-weight: bold; color: #fff; font-size: 15px; text-align: right; }
+        .user-kc-top { font-size: 13px; color: #00f0ff; font-weight: bold; display: flex; align-items: center; gap: 4px; }
+        .user-avatar { width: 38px; height: 38px; background: linear-gradient(135deg, #00f0ff, #0072ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: white; font-size: 16px; }
+
+        .main-container { padding: 30px; max-width: 1200px; width: 100%; }
+        .welcome-panel { background: #090e1a; border: 1px solid #14223c; border-radius: 16px; padding: 30px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 20px; }
+        .welcome-text h2 { font-size: 26px; font-weight: bold; margin-bottom: 8px; }
+        .welcome-text h2 span { color: #00f0ff; text-shadow: 0 0 15px rgba(0,240,255,0.4); }
+        .welcome-text p { color: #64748b; font-size: 14px; }
+        
+        .diamond-balance-card { background: rgba(13, 21, 39, 0.6); border: 1px solid #1e293b; padding: 15px 25px; border-radius: 12px; display: flex; align-items: center; gap: 15px; min-width: 240px; }
+        .balance-info .balance-label { font-size: 12px; color: #64748b; margin-bottom: 4px; }
+        .balance-info .balance-value { font-size: 24px; font-weight: 800; color: #00f0ff; }
+
+        /* BẢNG ĐIỀU KHIỂN CỦA CHỦ SHOP (ADMIN) */
+        .admin-panel-box {
+            background: #11091a;
+            border: 1px solid #4a148c;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+        .admin-title { font-size: 18px; font-weight: bold; color: #d8b4fe; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .admin-buttons { display: flex; gap: 15px; margin-top: 15px; }
+        .btn-admin-add { flex: 1; padding: 12px; background: #16a34a; border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .btn-admin-add:hover { background: #15803d; box-shadow: 0 0 10px rgba(22, 163, 74, 0.4); }
+        .btn-admin-sub { flex: 1; padding: 12px; background: #dc2626; border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .btn-admin-sub:hover { background: #b91c1c; box-shadow: 0 0 10px rgba(220, 38, 38, 0.4); }
+
+        /* KHU VỰC RÚT KIM CƯƠNG */
+        .id-card-box { background: #090e1a; border: 1px solid #14223c; border-radius: 16px; padding: 25px; margin-bottom: 30px; }
+        .id-card-title { font-size: 16px; font-weight: bold; margin-bottom: 6px; }
+        .id-card-sub { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .btn-claim-rewards { width: 100%; padding: 14px; background: linear-gradient(90deg, #00c6ff, #0072ff); border: none; color: white; font-weight: bold; font-size: 15px; text-transform: uppercase; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .btn-claim-rewards:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(0, 198, 255, 0.4); }
+
+        /* DANH SÁCH SỰ KIỆN */
+        .grid-events { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .event-node { background: #090e1a; border: 1px solid #14223c; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .event-node.locked { opacity: 0.5; }
+        .node-badge { position: absolute; top: 15px; right: 15px; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .bg-ready { background: rgba(0, 240, 255, 0.1); color: #00f0ff; border: 1px solid #00f0ff; }
+        .bg-lock { background: #1e293b; color: #64748b; }
+        .bg-done { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .node-name { font-size: 16px; font-weight: bold; margin-bottom: 6px; color: #f1f5f9; padding-right: 60px; }
+        .node-time { font-size: 13px; color: #64748b; margin-bottom: 15px; }
+        .node-gift { font-size: 15px; color: #00f0ff; font-weight: bold; margin-bottom: 15px; }
+        .btn-node-action { width: 100%; padding: 10px; border: 1px solid #14223c; background: #0d1324; color: #94a3b8; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-node-action.active { border-color: #00f0ff; color: #00f0ff; background: rgba(0,240,255,0.02); }
+        .btn-node-action.active:hover { background: rgba(0, 240, 255, 0.1); }
+
+        /* POPUP MODAL KIỂU ẢNH MẪU */
+        .popup-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); display: flex; justify-content: center; align-items: center; z-index: 9999; opacity: 0; visibility: hidden; transition: 0.25s ease-in-out; }
+        .popup-modal.show { opacity: 1; visibility: visible; }
+        .popup-inner { background: #ffffff; color: #000000; width: 90%; max-width: 440px; padding: 35px 25px; border-radius: 8px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        
+        /* VÒNG TRÒN TRẠNG THÁI TÍCH XANH HOẶC DẤU X ĐỎ */
+        .popup-status-circle { width: 60px; height: 60px; background-color: #22c55e; color: white; font-size: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; margin: 0 auto 20px auto; transition: 0.3s; }
+        
+        .popup-inner h3 { font-size: 20px; margin-bottom: 15px; font-weight: bold; color: #111827; }
+        .popup-details { font-size: 15px; color: #4b5563; margin-bottom: 25px; line-height: 1.5; }
+        .btn-hide-popup { background: #22c55e; color: white; border: none; padding: 12px 50px; font-weight: bold; border-radius: 6px; cursor: pointer; text-transform: uppercase; font-size: 14px; transition: 0.2s; width: 100%; max-width: 180px; }
+        .btn-hide-popup:hover { background: #16a34a; }
+
+        /* Ô NHẬP MÃ BẢO MẬT CỦA ADMIN */
+        .admin-code-input {
+            width: 80%;
+            padding: 12px;
+            font-size: 22px;
+            text-align: center;
+            letter-spacing: 8px;
+            font-weight: bold;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            outline: none;
+            color: #000;
+        }
+        .admin-code-input:focus { border-color: #8b5cf6; }
+        
+        .hidden-box { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. FORM ĐĂNG NHẬP / ĐĂNG KÝ -->
+    <div class="auth-wrapper" id="page-auth">
+        <div class="auth-card">
+            <div class="diamond-emoji-icon">💎</div>
+            <h2 id="auth-title">SHOPCUDUCFF</h2>
+            <div class="subtitle">Trang Web Nhận Kc Free Từ Các Dịp Lễ !!!</div>
+
+            <div id="box-login">
+                <div class="input-group">
+                    <label>Tên người dùng</label>
+                    <input type="text" id="inp-login-user" placeholder="Nhập tên người dùng">
+                </div>
+                <div class="input-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="inp-login-pass" placeholder="Nhập mật khẩu">
+                </div>
+                <button class="btn-submit" onclick="handleLogin()">Đăng nhập</button>
+                <div class="note-text">Lưu ý! vui lòng đăng ký là tài khoản liên kết với tài khoản game </div>
+                <div class="toggle-link">Chưa có tài khoản? <span onclick="switchAuth(false)">Đăng ký ngay</span></div>
+            </div>
+
+            <div id="box-register" class="hidden-box">
+                <div class="input-group">
+                    <label>Tên tài khoản mới</label>
+                    <input type="text" id="inp-reg-user" placeholder="Tạo tên tài khoản">
+                </div>
+                <div class="input-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="inp-reg-pass" placeholder="Tạo mật khẩu bảo mật">
+                </div>
+                <button class="btn-submit" onclick="handleRegister()">Đăng ký tài khoản</button>
+                <div class="toggle-link">Đã có tài khoản? <span onclick="switchAuth(true)">Đăng nhập ngay</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. GIAO DIỆN CHÍNH -->
+    <div class="main-layout hidden-box" id="page-dashboard">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <span style="font-size: 20px; margin-right: 5px;">💎</span>
+                <h1>SHOPCUDUCFF</h1>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">🏠 Trang chủ</li>
+            </ul>
+        </div>
+
+        <div class="content-area">
+            <div class="topbar">
+                <div class="page-title">Trang chủ</div>
+                <div class="user-info-box">
+                    <div class="user-name-top">
+                        <div id="txt-user-id">Gamer</div>
+                        <div class="user-kc-top">💎 <span class="sync-kc">0</span></div>
+                    </div>
+                    <div class="user-avatar" id="txt-avatar-char">U</div>
+                </div>
+            </div>
+
+            <div class="main-container">
+                <div class="welcome-panel">
+                    <div class="welcome-text">
+                        <h2>Chào mừng, <span id="welcome-username">user</span>!</h2>
+                        <p>Khám phá các dịch vụ nạp kim cương và nhận thưởng hấp dẫn từ SHOPCUDUCFF đến năm 2050.</p>
+                    </div>
+                    <div class="diamond-balance-card">
+                        <div style="font-size: 30px;">💎</div>
+                        <div class="balance-info">
+                            <div class="balance-label">Kim cương của bạn đang có</div>
+                            <div class="balance-value sync-kc">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BẢNG ĐIỀU KHIỂN QUYỀN LỰC CHO CHỦ SHOP -->
+                <div class="admin-panel-box hidden-box" id="box-admin-ctrl">
+                    <div class="admin-title">⚡ BẢNG ĐIỀU KHIỂN CHỦ SHOP VIP</div>
+                    <div class="id-card-sub" style="margin-bottom: 10px;">Bạn có quyền tăng hoặc giảm kim cương trực tiếp vào tài khoản hiện tại</div>
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <label>Nhập số lượng Kim cương muốn thay đổi</label>
+                        <input type="number" id="inp-admin-gem-amount" value="5000" min="1">
+                    </div>
+                    <div class="admin-buttons">
+                        <button class="btn-admin-add" onclick="adminModifyGem(true)">➕ TĂNG KIM CƯƠNG</button>
+                        <button class="btn-admin-sub" onclick="adminModifyGem(false)">➖ TRỪ KIM CƯƠNG</button>
+                    </div>
+                </div>
+
+                <div class="id-card-box">
+                    <div class="id-card-title">🎮 Chuyển Kim Cương Vào Game</div>
+                    <div class="id-card-sub">Nhập đúng ID nhân vật và chọn gói kim cương muốn rút về nick game</div>
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>ID Nhân Vật Free Fire</label>
+                            <input type="text" id="inp-game-id" placeholder="Ví dụ: 98234125...">
+                        </div>
+                        <div class="input-group">
+                            <label>Gói Kim Cương Muốn Nhận</label>
+                            <select id="select-withdraw-gem">
+                                <option value="90">90 Kim Cương</option>
+                                <option value="230">230 Kim Cương</option>
+                                <option value="580">580 Kim Cương</option>
+                                <option value="1160">1160 Kim Cương</option>
+                                <option value="2400">2400 Kim Cương</option>
+                                <option value="4800">4800 Kim Cương</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-claim-rewards" onclick="processWithdraw()">Xác nhận nhận quà</button>
+                </div>
+
+                <h3 style="margin-bottom: 15px; color: #94a3b8; font-size: 15px; text-transform: uppercase;">Nhận Thêm Kim Cương Từ Sự Kiện</h3>
+                <div class="grid-events" id="box-events-container"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- POPUP XÁC THỰC MÃ BẢO MẬT & THÔNG BÁO CHUNG -->
+    <div class="popup-modal" id="modal-alert">
+        <div class="popup-inner">
+            <div class="popup-status-circle" id="pop-circle">✓</div>
+            <h3 id="pop-title">Thanh toán thành công</h3>
+            
+            <div id="pop-body-content">
+                <div class="popup-details" id="modal-details-text">Nội dung thông báo</div>
+            </div>
+            
+            <div id="pop-footer-btn">
+                <button class="btn-hide-popup" id="btn-pop-action" onclick="closeAlert()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const SYSTEM_TIME = new Date();
+        const CURRENT_YEAR = SYSTEM_TIME.getFullYear(); 
+
+        // THÔNG TIN BẢO MẬT TÀI KHOẢN CHỦ SHOP VIP
+        const ADMIN_USER = "chủ shop cuduc";
+        const ADMIN_PASS = "2026-2050kk";
+        const ADMIN_SECURITY_CODE = "2811"; 
+
+        const LUNAR_DATA = {
+            2026: { tet: "02-17", trungthu: "09-25" }, 2027: { tet: "02-06", trungthu: "09-15" },
+            2028: { tet: "01-26", trungthu: "10-03" }, 2029: { tet: "02-13", trungthu: "09-22" },
+            2030: { tet: "02-03", trungthu: "09-12" }, 2031: { tet: "01-23", trungthu: "10-01" },
+            2032: { tet: "02-11", trungthu: "09-19" }, 2033: { tet: "01-31", trungthu: "09-08" },
+            2034: { tet: "02-19", trungthu: "09-27" }, 2035: { tet: "02-08", trungthu: "09-16" },
+            2036: { tet: "01-28", trungthu: "10-04" }, 2037: { tet: "02-15", trungthu: "09-24" },
+            2038: { tet: "02-04", trungthu: "09-13" }, 2039: { tet: "01-24", trungthu: "10-02" },
+            2040: { tet: "02-12", trungthu: "09-21" }, 2041: { tet: "02-01", trungthu: "09-10" },
+            2042: { tet: "01-22", trungthu: "09-28" }, 2043: { tet: "02-10", trungthu: "09-17" },
+            2044: { tet: "01-30", trungthu: "09-06" }, 2045: { tet: "02-17", trungthu: "09-25" },
+            2046: { tet: "02-06", trungthu: "09-14" }, 2047: { tet: "01-26", trungthu: "10-03" },
+            2048: { tet: "02-14", trungthu: "09-22" }, 2049: { tet: "02-02", trungthu: "09-11" },
+            2050: { tet: "01-23", trungthu: "09-30" }
+        };
+
+        let tetDay = LUNAR_DATA[CURRENT_YEAR] ? LUNAR_DATA[CURRENT_YEAR].tet : "02-10";
+        let trungThuDay = LUNAR_DATA[CURRENT_YEAR] ? LUNAR_DATA[CURRENT_YEAR].trungthu : "09-15";
+
+        const LIST_GIFT_EVENTS = [
+            { id: "ev_1", title: "Quà tặng Tân Thủ Mới Lập Acc", dateStr: "Mở Hằng Ngày", activeTime: new Date(`${CURRENT_YEAR}-01-01`), gem: 500, isNewbie: true },
+            { id: "ev_2", title: `Sự Kiện Tết Nguyên Đán ${CURRENT_YEAR}`, dateStr: `${tetDay.split('-')[1]}/${tetDay.split('-')[0]}/${CURRENT_YEAR}`, activeTime: new Date(`${CURRENT_YEAR}-${tetDay}`), gem: 1500 },
+            { id: "ev_3", title: "Giải Phóng Toàn Quốc 30/4", dateStr: `30/04/${CURRENT_YEAR}`, activeTime: new Date(`${CURRENT_YEAR}-04-30`), gem: 1000 },
+            { id: "ev_4", title: "Quốc Tế Thiếu Nhi 1/6", dateStr: `01/06/${CURRENT_YEAR}`, activeTime: new Date(`${CURRENT_YEAR}-06-01`), gem: 1200 },
+            { id: "ev_5", title: `Trung Thu Đoàn Viên ${CURRENT_YEAR}`, dateStr: `${trungThuDay.split('-')[1]}/${trungThuDay.split('-')[0]}/${CURRENT_YEAR}`, activeTime: new Date(`${CURRENT_YEAR}-${trungThuDay}`), gem: 1160 },
+            { id: "ev_6", title: "Đại Lễ Giáng Sinh An Lành", dateStr: `25/12/${CURRENT_YEAR}`, activeTime: new Date(`${CURRENT_YEAR}-12-25`), gem: 2400 }
+        ];
+
+        let activeAccount = null;
+        let accountData = { gemBalance: 0, collected: [], lastResetYear: CURRENT_YEAR };
+        let tempUser = ""; 
+        let tempParsedData = null;
+
+        if(!localStorage.getItem("scdf_" + ADMIN_USER)) {
+            localStorage.setItem("scdf_" + ADMIN_USER, JSON.stringify({ pass: ADMIN_PASS, gemBalance: 99999, collected: [], lastResetYear: CURRENT_YEAR }));
+        }
+
+        function switchAuth(toLogin) {
+            document.getElementById("box-login").classList.toggle("hidden-box", !toLogin);
+            document.getElementById("box-register").classList.toggle("hidden-box", toLogin);
+        }
+
+        function handleRegister() {
+            let u = document.getElementById("inp-reg-user").value.trim();
+            let p = document.getElementById("inp-reg-pass").value.trim();
+            if(!u || !p) { alert("Vui lòng nhập đầy đủ thông tin!"); return; }
+            if(u.toLowerCase() === ADMIN_USER) { alert("Tên đăng ký trùng với tài khoản Chủ Shop!"); return; }
+            if(localStorage.getItem("scdf_" + u)) { alert("Tài khoản này đã tồn tại!"); return; }
+
+            let newUserData = { pass: p, gemBalance: 0, collected: [], lastResetYear: CURRENT_YEAR };
+            localStorage.setItem("scdf_" + u, JSON.stringify(newUserData));
+            alert("Đăng ký thành công!");
+            switchAuth(true);
+        }
+
+        function handleLogin() {
+            let u = document.getElementById("inp-login-user").value.trim();
+            let p = document.getElementById("inp-login-pass").value.trim();
+            if(!u || !p) { alert("Vui lòng điền tài khoản và mật khẩu!"); return; }
+
+            let record = localStorage.getItem("scdf_" + u);
+            if(!record) { alert("Tài khoản không tồn tại!"); return; }
+
+            let parsed = JSON.parse(record);
+            if(parsed.pass !== p) { alert("Sai mật khẩu!"); return; }
+
+            // NẾU LÀ CHỦ SHOP: BẬT POPUP KIỂM TRA MÃ BẢO MẬT
+            if (u === ADMIN_USER) {
+                tempUser = u;
+                tempParsedData = parsed;
+                showAdminSecurityPopup(); 
+                return; 
+            }
+
+            loginSuccess(u, parsed);
+        }
+
+        function loginSuccess(u, parsed) {
+            activeAccount = u;
+            accountData = parsed;
+
+            if (!accountData.lastResetYear || accountData.lastResetYear < CURRENT_YEAR) {
+                accountData.collected = []; 
+                accountData.lastResetYear = CURRENT_YEAR; 
+            }
+
+            document.getElementById("page-auth").classList.add("hidden-box");
+            document.getElementById("page-dashboard").classList.remove("hidden-box");
+            
+            document.getElementById("txt-user-id").innerText = u;
+            document.getElementById("welcome-username").innerText = u;
+            document.getElementById("txt-avatar-char").innerText = u.charAt(0).toUpperCase();
+
+            if(u === ADMIN_USER) {
+                document.getElementById("box-admin-ctrl").classList.remove("hidden-box");
+            } else {
+                document.getElementById("box-admin-ctrl").classList.add("hidden-box");
+            }
+
+            syncUI();
+            buildEventsGrid();
+        }
+
+        /* 🛡️ HIỂN THỊ POPUP NHẬP MÃ BẢO MẬT CHỦ SHOP */
+        function showAdminSecurityPopup() {
+            let circle = document.getElementById("pop-circle");
+            circle.innerText = "🔒";
+            circle.style.backgroundColor = "#8b5cf6"; // Màu tím bảo mật ban đầu
+
+            document.getElementById("pop-title").innerText = "Xác minh Chủ Shop";
+            
+            document.getElementById("pop-body-content").innerHTML = `
+                <div class="popup-details" style="margin-bottom:10px;">Vui lòng nhập mã bảo mật cấp 2 gồm 4 số để tiếp tục:</div>
+                <input type="password" maxlength="4" id="inp-secure-code" class="admin-code-input" placeholder="••••">
+                <div id="secure-error-hint" style="color:#ef4444; font-size:14px; font-weight:bold; margin-top:-10px; margin-bottom:10px;"></div>
+            `;
+            
+            document.getElementById("pop-footer-btn").innerHTML = `
+                <button class="btn-hide-popup" style="background:#8b5cf6;" onclick="verifyAdminCode()">Xác nhận</button>
+            `;
+            
+            document.getElementById("modal-alert").classList.add("show");
+        }
+
+        /* 🔎 KIỂM TRA MÃ BẢO MẬT: ĐÚNG TÍCH XANH, SAI DẤU X ĐỎ */
+        function verifyAdminCode() {
+            let codeVal = document.getElementById("inp-secure-code").value.trim();
+            let circle = document.getElementById("pop-circle");
+            let errorHint = document.getElementById("secure-error-hint");
+
+            if (codeVal === ADMIN_SECURITY_CODE) {
+                // ĐÚNG MÃ -> HIỆN TÍCH XANH ✓ GIỐNG ẢNH
+                circle.innerText = "✓";
+                circle.style.backgroundColor = "#22c55e"; 
+                document.getElementById("pop-title").innerText = "Xác minh thành công!";
+                document.getElementById("pop-body-content").innerHTML = `<div class="popup-details" style="color:#22c55e; font-weight:bold;">Đang đăng nhập vào bảng điều khiển VIP...</div>`;
+                document.getElementById("pop-footer-btn").innerHTML = "";
+
+                setTimeout(() => {
+                    closeAlert();
+                    loginSuccess(tempUser, tempParsedData);
+                }, 1000);
+
+            } else {
+                // SAI MÃ -> HIỆN DẤU X ĐỎ ✕ KHẨN CẤP
+                circle.innerText = "✕";
+                circle.style.backgroundColor = "#ef4444"; 
+                errorHint.innerText = "Mã bảo mật không đúng!";
+                
+                // Sau 1.2 giây tự phục hồi về trạng thái nhập mã để nhập lại
+                setTimeout(() => {
+                    circle.innerText = "🔒";
+                    circle.style.backgroundColor = "#8b5cf6";
+                    errorHint.innerText = "";
+                    document.getElementById("inp-secure-code").value = "";
+                }, 1200);
+            }
+        }
+
+        function adminModifyGem(isAdd) {
+            if(activeAccount !== ADMIN_USER) return;
+            let val = parseInt(document.getElementById("inp-admin-gem-amount").value);
+            if(isNaN(val) || val <= 0) { alert("Vui lòng nhập số lượng hợp lệ!"); return; }
+
+            if(isAdd) {
+                accountData.gemBalance += val;
+                alert(`Đã cộng thành công +${val.toLocaleString()} 💎`);
+            } else {
+                if(accountData.gemBalance < val) { accountData.gemBalance = 0; } 
+                else { accountData.gemBalance -= val; }
+                alert(`Đã trừ thành công -${val.toLocaleString()} 💎`);
+            }
+            syncUI();
+        }
+
+        function syncUI() {
+            let targets = document.querySelectorAll(".sync-kc");
+            targets.forEach(el => el.innerText = accountData.gemBalance.toLocaleString());
+            if(activeAccount) {
+                localStorage.setItem("scdf_" + activeAccount, JSON.stringify(accountData));
+            }
+        }
+
+        function buildEventsGrid() {
+            const container = document.getElementById("box-events-container");
+            let renderHtml = "";
+
+            LIST_GIFT_EVENTS.forEach(item => {
+                let isLocked = !item.isNewbie && (SYSTEM_TIME < item.activeTime);
+                let isClaimed = accountData.collected.includes(`${CURRENT_YEAR}_${item.id}`);
+                
+                let badge = ""; let buttonStr = ""; let lockClass = "";
+
+                if(isClaimed) {
+                    badge = `<span class="node-badge bg-done">Đã Nhận</span>`;
+                    buttonStr = `<button class="btn-node-action" disabled>✓ Hoàn thành</button>`;
+                } else if(isLocked) {
+                    badge = `<span class="node-badge bg-lock">Chưa mở</span>`;
+                    buttonStr = `<button class="btn-node-action" disabled>🔒 Chưa tới ngày</button>`;
+                    lockClass = "locked";
+                } else {
+                    badge = `<span class="node-badge bg-ready">Sẵn sàng</span>`;
+                    buttonStr = `<button class="btn-node-action active" onclick="clickClaimEvent('${item.id}', ${item.gem})">Nhận quà </button>`;
+                }
+
+                renderHtml += `
+                    <div class="event-node ${lockClass}">
+                        ${badge}
+                        <div>
+                            <div class="node-name">${item.title}</div>
+                            <div class="node-time">Thời gian: ${item.dateStr}</div>
+                            <div class="node-gift">Phần quà: +${item.gem} 💎</div>
+                        </div>
+                        <div>${buttonStr}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = renderHtml;
+        }
+
+        function clickClaimEvent(eventId, gemBonus) {
+            if(!activeAccount) return;
+            accountData.gemBalance += gemBonus;
+            accountData.collected.push(`${CURRENT_YEAR}_${eventId}`); 
+            syncUI();
+            buildEventsGrid();
+        }
+
+        function processWithdraw() {
+            if(!activeAccount) return;
+            let idGame = document.getElementById("inp-game-id").value.trim();
+            let amount = parseInt(document.getElementById("select-withdraw-gem").value);
+
+            if(!idGame) { alert("Vui lòng điền ID Free Fire!"); return; }
+            if(accountData.gemBalance < amount) { 
+                alert(`Bạn không đủ Kim cương! Cần thêm ít nhất ${amount - accountData.gemBalance} 💎.`); 
+                return; 
+            }
+
+            accountData.gemBalance -= amount;
+            syncUI();
+
+            // Hiển thị popup thông báo tích xanh rút tiền thành công y hệt ảnh
+            let circle = document.getElementById("pop-circle");
+            circle.innerText = "✓";
+            circle.style.backgroundColor = "#22c55e"; 
+            
+            document.getElementById("pop-title").innerText = "Thanh toán thành công";
+            document.getElementById("pop-body-content").innerHTML = `
+                <div class="popup-details" id="modal-details-text">(id: ${idGame}) rút ${amount} 💎 thành công về tài khoản!</div>
+            `;
+            document.getElementById("pop-footer-btn").innerHTML = `
+                <button class="btn-hide-popup" style="background:#22c55e;" onclick="closeAlert()">Đóng</button>
+            `;
+
+            document.getElementById("inp-game-id").value = "";
+            document.getElementById("modal-alert").classList.add("show");
+        }
+
+        function closeAlert() {
+            document.getElementById("modal-alert").classList.remove("show");
+        }
+    </script>
+</body>
+</html>
